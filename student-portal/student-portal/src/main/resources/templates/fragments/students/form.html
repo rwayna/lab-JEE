@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title th:text="${student.id} ? 'Modifier' : 'Ajouter'">Formulaire</title>
+</head>
+<body>
+<section>
+    <h2 th:text="${student.id} ? 'Modifier étudiant' : 'Nouvel étudiant'">Formulaire</h2>
+
+    <!-- Formulaire avec validation -->
+    <form th:action="@{/students/save}" th:object="${student}" method="post">
+        <div class="mb-3">
+            <label class="form-label">Nom complet</label>
+            <input type="text" class="form-control" th:field="*{name}">
+            <small class="text-danger" th:if="${#fields.hasErrors('name')}"
+                   th:errors="*{name}">Erreur nom</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+</section>
+</body>
+</html>

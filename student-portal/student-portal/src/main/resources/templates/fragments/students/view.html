@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::main})}">
+<head>
+    <title th:text="${'Détails - ' + student.name}">Détails Étudiant</title>
+    <style>
+        .student-card {
+            border-left: 5px solid #0d6efd;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <!-- En-tête avec bouton retour -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 th:text="${student.name}">Détails Étudiant</h2>
+        <div>
+            <a th:href="@{/students}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Retour
+            </a>
+            <a th:href="@{/students/edit/{id}(id=${student.id})}"
+               class="btn btn-primary ms-2">
+                <i class="bi bi-pencil"></i> Modifier
+            </a>
+        </div>
+    </div>
+
+    <!-- Carte de détails -->
+    <div class="card student-card mb-4">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">Informations personnelles</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Colonne gauche -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <span class="detail-label">ID :</span>
+                        <span th:text="${student.id}">123</span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="detail-label">Nom complet :</span>
+                        <span th:text="${student.name}">Jean Dupont</span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="detail-label">Âge :</span>
+                        <span th:text="${student.age}">21</span>
+                    </div>
+                </div>
+
+                <!-- Colonne droite -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <span class="detail-label">Email :</span>
+                        <a th:href="'mailto:' + ${student.email}"
+                           th:text="${student.email}">
+                            jean.dupont@example.com
+                        </a>
+                    </div>
+                    <div class="mb-3">
+                        <span class="detail-label">Filière :</span>
+                        <span th:text="${student.course}">Informatique</span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="detail-label">Identifiant étudiant :</span>
+                        <span th:text="${student.studentId}">INF2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section supplémentaire (exemple) -->
+    <div class="card">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">Actions</h5>
+        </div>
+        <div class="card-body">
+            <a th:href="@{/students/delete/{id}(id=${student.id})}"
+               class="btn btn-danger"
+               onclick="return confirm('Confirmer la suppression de cet étudiant ?')">
+                <i class="bi bi-trash"></i> Supprimer
+            </a>
+        </div>
+    </div>
+</main>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</body>
+</html><!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::main})}">
+<head>
+    <title th:text="${'Détails - ' + student.name}">Détails Étudiant</title>
+    <style>
+        .student-card {
+            border-left: 5px solid #0d6efd;
+        }
+        .detail-label {
+            font-weight: 600;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <!-- En-tête avec bouton retour -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 th:text="${student.name}">Détails Étudiant</h2>
+        <div>
+            <a th:href="@{/students}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Retour
+            </a>
+            <a th:href="@{/students/edit/{id}(id=${student.id})}"
+               class="btn btn-primary ms-2">
+                <i class="bi bi-pencil"></i> Modifier
+            </a>
+        </div>
+    </div>
+
+    <!-- Carte de détails -->
+    <div class="card student-card mb-4">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">Informations personnelles</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Colonne gauche -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <span class="detail-label">ID :</span>
+                        <span th:text="${student.id}">123</span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="detail-label">Nom complet :</span>
+                        <span th:text="${student.name}">Jean Dupont</span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="detail-label">Âge :</span>
+                        <span th:text="${student.age}">21</span>
+                    </div>
+                </div>
+
+                <!-- Colonne droite -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <span class="detail-label">Email :</span>
+                        <a th:href="'mailto:' + ${student.email}"
+                           th:text="${student.email}">
+                            jean.dupont@example.com
+                        </a>
+                    </div>
+                    <div class="mb-3">
+                        <span class="detail-label">Filière :</span>
+                        <span th:text="${student.course}">Informatique</span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="detail-label">Identifiant étudiant :</span>
+                        <span th:text="${student.studentId}">INF2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section supplémentaire (exemple) -->
+    <div class="card">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">Actions</h5>
+        </div>
+        <div class="card-body">
+            <a th:href="@{/students/delete/{id}(id=${student.id})}"
+               class="btn btn-danger"
+               onclick="return confirm('Confirmer la suppression de cet étudiant ?')">
+                <i class="bi bi-trash"></i> Supprimer
+            </a>
+        </div>
+    </div>
+</main>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</body>
+</html>

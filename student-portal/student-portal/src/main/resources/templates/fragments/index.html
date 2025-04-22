@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::main})}">
+<head>
+    <title>Accueil - Student Portal</title>
+</head>
+<body>
+<main>
+    <!-- Hero Section -->
+    <div class="jumbotron bg-light p-5 rounded-3 mb-4">
+        <div class="container">
+            <h1 class="display-4">Bienvenue sur Student Portal</h1>
+            <p class="lead">Gérez vos étudiants en toute simplicité</p>
+            <hr class="my-4">
+            <p>Application de gestion étudiante développée avec Spring Boot et Thymeleaf</p>
+            <a class="btn btn-primary btn-lg" th:href="@{/students}" role="button">
+                Voir la liste des étudiants
+            </a>
+        </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">📋 Liste complète</h5>
+                        <p class="card-text">Consultez tous les étudiants enregistrés dans le système.</p>
+                        <a th:href="@{/students}" class="btn btn-outline-primary">Accéder</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">➕ Ajout simple</h5>
+                        <p class="card-text">Enregistrez de nouveaux étudiants via un formulaire intuitif.</p>
+                        <a th:href="@{/students/new}" class="btn btn-outline-success">Ajouter</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">🔍 Recherche</h5>
+                        <p class="card-text">Trouvez rapidement un étudiant par son nom ou ID.</p>
+                        <a th:href="@{/students}" class="btn btn-outline-info">Rechercher</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="container mt-5" th:if="${students != null}">
+        <div class="card">
+            <div class="card-header">
+                <h5>Statistiques rapides</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Nombre total d'étudiants :
+                            <span class="badge bg-primary" th:text="${students.size()}">0</span>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Dernier ajout :
+                            <span th:if="${!students.empty}"
+                                  th:text="${students[0].name} + ' (' + ${students[0].course} + ')'">
+                                    Aucun étudiant
+                                </span>
+                            <span th:if="${students.empty}">Aucun étudiant</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
