@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:thym="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription Étudiant</title>
+</head>
+<body>
+<h1>Inscription d'un étudiant</h1>
+
+<form th:action="@{/students/register}" th:object="${student}" method="post">
+    <div>
+        <label>Nom :</label>
+        <input type="text" th:field="*{name}"/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    </div>
+
+    <div>
+        <label>Email :</label>
+        <input type="email" th:field="*{email}"/>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+
+    <div>
+        <label>Spécialité :</label>
+        <input type="text" th:field="*{major}"/>
+        <span th:if="${#fields.hasErrors('major')}" th:errors="*{major}"></span>
+    </div>
+
+    <button type="submit">Enregistrer</button>
+</form>
+
+<a th:href="@{/students/list}">Retour à la liste</a> |
+<a th:href="@{/}">Accueil</a>
+</body>
+</html>
